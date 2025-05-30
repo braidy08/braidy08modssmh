@@ -21,6 +21,10 @@
 		}
 	],
 	"Plugins": [
+    {
+      "Name": "Wwise",
+      "Enabled": true
+    },
 		{
 			"Name": "PlatformCrypto",
 			"Enabled": true
@@ -148,7 +152,8 @@
 		},
 		{
 			"Name": "MfMedia",
-			"Enabled": false
+			"Enabled": false,
+			"BlacklistPlatforms": []
 		},
 		{
 			"Name": "Niagara",
@@ -190,10 +195,6 @@
 		},
 		{
 			"Name": "SBZAnalytics",
-			"Enabled": true
-		},
-		{
-			"Name": "SBZAnalyticsLegacy",
 			"Enabled": true
 		},
 		{
@@ -360,8 +361,7 @@
 			"Name": "FSR3",
 			"Enabled": true,
 			"SupportedTargetPlatforms": [
-				"Win64",
-				"WinGDK"
+				"Win64"
 			]
 		},
 		{
@@ -390,18 +390,14 @@
 			"Name": "TLMVoiceChat",
 			"Enabled": true,
 			"SupportedTargetPlatforms": [
-				"Win64",
-				"WinGDK",
-				"PS5",
-				"XSX"
+				"Win64"
 			]
 		},
 		{
 			"Name": "ChromaSDKPlugin",
 			"Enabled": true,
 			"SupportedTargetPlatforms": [
-				"Win64",
-				"WinGDK"
+				"Win64"
 			]
 		},
 		{

@@ -1,7 +1,6 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "AttributeSet.h"
-#include "AttributeSet.h"
 #include "SBZPawnAttributeSet.generated.h"
 
 class APawn;
@@ -9,7 +8,7 @@ class USBZDamageType;
 class USBZVoiceCommentDataAsset;
 
 UCLASS(Blueprintable)
-class USBZPawnAttributeSet : public UAttributeSet {
+class STARBREEZE_API USBZPawnAttributeSet : public UAttributeSet {
     GENERATED_BODY()
 public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
@@ -19,7 +18,10 @@ public:
     FGameplayAttributeData OverHealDamageMultiplier;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
-    FGameplayAttributeData ArmorPenetration;
+    FGameplayAttributeData HealthDamageMultiplier;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    FGameplayAttributeData IncomingArmorPenetration;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, ReplicatedUsing=OnRep_Health, meta=(AllowPrivateAccess=true))
     FGameplayAttributeData Health;
@@ -33,6 +35,9 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     FGameplayAttributeData ArmorMax;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FGameplayAttributeData ArmorChunk;
+    
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     FGameplayAttributeData ArmorHardness;
     
@@ -40,13 +45,22 @@ public:
     FGameplayAttributeData ArmorHurtReactionWeightReduction;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
-    FGameplayAttributeData DealtDamageMultiplier;
+    FGameplayAttributeData OutgoingDamageMultiplier;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, ReplicatedUsing=OnRep_OverHeal, meta=(AllowPrivateAccess=true))
     FGameplayAttributeData OverHeal;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     FGameplayAttributeData OverHealMax;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, ReplicatedUsing=OnRep_IncomingDamageMultiplier, meta=(AllowPrivateAccess=true))
+    FGameplayAttributeData IncomingDamageMultiplier;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, ReplicatedUsing=OnRep_ArmorDamageReduction, meta=(AllowPrivateAccess=true))
+    FGameplayAttributeData ArmorDamageReduction;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    FGameplayAttributeData ArmorDamageReductionMax;
     
 protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
@@ -71,19 +85,31 @@ public:
 
 protected:
     UFUNCTION(BlueprintCallable)
-    void OnRep_OverHeal(const FGameplayAttributeData& OldOverHeal);
+    void OnRep_OverHeal(const FGameplayAttributeData& OldValue);
     
     UFUNCTION(BlueprintCallable)
-    void OnRep_Health(const FGameplayAttributeData& OldHealth);
+    void OnRep_IncomingDamageMultiplier(const FGameplayAttributeData& OldValue);
     
     UFUNCTION(BlueprintCallable)
-    void OnRep_Armor(const FGameplayAttributeData& OldArmor);
+    void OnRep_Health(const FGameplayAttributeData& OldValue);
+    
+    UFUNCTION(BlueprintCallable)
+    void OnRep_ArmorDamageReduction(const FGameplayAttributeData& OldValue);
+    
+    UFUNCTION(BlueprintCallable)
+    void OnRep_Armor(const FGameplayAttributeData& OldValue);
     
     UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
     void Multicast_SetOverHeal(float NewCurrentValue);
     
     UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
+    void Multicast_SetIncomingDamageMultiplier(float NewCurrentValue);
+    
+    UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
     void Multicast_SetHealth(float NewCurrentValue);
+    
+    UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
+    void Multicast_SetArmorDamageReduction(float NewCurrentValue);
     
     UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
     void Multicast_SetArmor(float NewCurrentValue);

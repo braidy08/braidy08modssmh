@@ -3,6 +3,7 @@
 #include "GameplayTagContainer.h"
 #include "ESBZPlayerAbilityBuffType.h"
 #include "SBZAbilitySystemComponent.h"
+#include "SBZHET5BlackOverskillTargetData.h"
 #include "SBZPlayerAbilitySystemComponent.generated.h"
 
 class APawn;
@@ -55,6 +56,9 @@ private:
     USBZCharacterEffectDataAsset* BlockedBuffGUIEffectDataArray[3];
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    USBZCharacterEffectDataAsset* RepairArmorInteractionImmuneGUIEffectData;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     USBZCharacterEffectDataAsset* TankLastManStandingImmuneGUIEffectData;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -67,10 +71,16 @@ private:
     uint32 BlockedBuffGUIEffectHandleArray[3];
     
     UPROPERTY(EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    uint32 RepairArmorInteractionImmuneGUIEffectHandle;
+    
+    UPROPERTY(EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     uint32 TankLastManStandingImmuneGUIEffectHandle;
     
     UPROPERTY(EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     uint32 AmmoSpecialistHighGrainGUIEffectHandle;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, ReplicatedUsing=OnRepairArmorInteractionImmuneTimeChanged, meta=(AllowPrivateAccess=true))
+    float RepairArmorInteractionImmuneTime;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, ReplicatedUsing=OnSkillTankLastManStandingBlockingChanged, meta=(AllowPrivateAccess=true))
     bool bIsSkillTankLastManStandingBlocking;
@@ -91,7 +101,7 @@ private:
     float AmmoSpecialistHighGrainDamage;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
-    int32 AmmoSpecialistHighGrainArmorPenetrationPoints;
+    int32 AmmoSpecialistHighGrainOutgoingArmorPenetrationPoints;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float OverHealDegradationTickInterval;
@@ -104,6 +114,9 @@ private:
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     USBZSkillData* LastManStandingSkillData;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    float ArmorDamageReductionDegradationTickInterval;
     
 public:
     USBZPlayerAbilitySystemComponent(const FObjectInitializer& ObjectInitializer);
@@ -120,6 +133,11 @@ private:
     UFUNCTION(BlueprintCallable, Reliable, Server)
     void Server_SetDamageBuffTime(const FGameplayTag& SkillTag, float Time);
     
+public:
+    UFUNCTION(BlueprintCallable, Reliable, Server)
+    void Server_SetCurrentMeleeAnimationIndex(int32 InIndex);
+    
+private:
     UFUNCTION(BlueprintCallable, Reliable, Server)
     void Server_ResetSpeedBuffTime();
     
@@ -136,6 +154,9 @@ private:
     void OnSkillTankLastManStandingBlockingChanged();
     
     UFUNCTION(BlueprintCallable)
+    void OnRepairArmorInteractionImmuneTimeChanged();
+    
+    UFUNCTION(BlueprintCallable)
     void OnBuffTimeArrayChanged();
     
     UFUNCTION(BlueprintCallable)
@@ -147,12 +168,25 @@ private:
     UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
     void Multicast_UnblockSkillTankLastManStanding();
     
+public:
+    UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
+    void Multicast_ThePunchDeactivated(bool bInHeavy);
+    
+    UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
+    void Multicast_ThePunchActivated(bool bInHeavy);
+    
+private:
     UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
     void Multicast_SetTacticalDroneBuffBlockCooldown(float Cooldown);
     
     UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
     void Multicast_SetSpeedBuffTime(float Time);
     
+public:
+    UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
+    void Multicast_SetRepairArmorInteractionImmuneTime(float ImmuneTime);
+    
+private:
     UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
     void Multicast_SetMitigationBuffTime(float Time);
     
@@ -183,11 +217,17 @@ public:
     UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
     void Multicast_MarkedForDeath(const TArray<ASBZAIBaseCharacter*>& AICharacters);
     
+    UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
+    void Multicast_FireHET5AOE(const FSBZHET5BlackOverskillTargetData& InTargetData);
+    
 private:
     UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
     void Multicast_BlockSkillTankLastManStanding(float ImmuneTime);
     
 public:
+    UFUNCTION(BlueprintCallable, Client, Reliable)
+    void Client_UnblockAbility(const FGameplayAbilitySpecHandle& Handle);
+    
     UFUNCTION(BlueprintCallable, Client, Reliable)
     void Client_RejectBuffTime(ESBZPlayerAbilityBuffType Type);
     

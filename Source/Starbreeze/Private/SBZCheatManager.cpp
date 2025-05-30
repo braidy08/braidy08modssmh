@@ -59,6 +59,9 @@ void USBZCheatManager::Spawn(const FName& AssetName, int32 Count, float Distance
 void USBZCheatManager::SimulateChallengeNotificationReceived() {
 }
 
+void USBZCheatManager::SetVehicleMovementDebugLogEnabled(bool bLogEnabled) {
+}
+
 void USBZCheatManager::SetToolAmmo(int32 Count, int32 PlayerIndex) {
 }
 
@@ -104,6 +107,9 @@ void USBZCheatManager::SetPlayerName(const FString& Name, int32 PlayerIndex) {
 void USBZCheatManager::SetPlayerMergePartySelected(bool bIsMergePartySelected) {
 }
 
+void USBZCheatManager::SetPlayerMaskMould(const FName& PlayerMaskMouldName, int32 PlayerIndex) {
+}
+
 void USBZCheatManager::SetPlayerMask(const FName& PlayerMaskName, int32 PlayerIndex) {
 }
 
@@ -147,6 +153,9 @@ void USBZCheatManager::SetOverkillWeaponProgress(float InProgress, int32 PlayerI
 }
 
 void USBZCheatManager::SetOverkillWeaponLoadout(const FName& DataName, int32 PlayerIndex) {
+}
+
+void USBZCheatManager::SetOverkillEnabled(bool bIsEnabled, int32 PlayerIndex) {
 }
 
 void USBZCheatManager::SetOptionalMilestonePassed(const FString& OptionalMilestoneName) {
@@ -248,7 +257,7 @@ void USBZCheatManager::SetAmmoLoaded(float NewAmmoCount, int32 WeaponIndex, int3
 void USBZCheatManager::SetAmmoInventory(float NewAmmoCount, int32 WeaponIndex, int32 PlayerIndex) {
 }
 
-void USBZCheatManager::SetAllSkills(bool bIsAcquired, int32 PlayerIndex) {
+void USBZCheatManager::SetAllSkills(bool bIsAcquired, bool bIsRemoveAllowed, bool bIsVersion2, int32 PlayerIndex) {
 }
 
 void USBZCheatManager::SetAddMissionFailedTimeout(float AddTimeout) {
@@ -294,6 +303,9 @@ void USBZCheatManager::RequestMissionEnd(ESBZEndMissionResult Result, int32 Outr
 }
 
 void USBZCheatManager::ReportBug(const FString& Description, bool bIsEverywhere, bool bIsBlockerChecked, bool bIsInteractableChecked) {
+}
+
+void USBZCheatManager::ReplenishPlayerArmor(int32 PlayerIndex) {
 }
 
 void USBZCheatManager::RefreshPlayerAbilityBuffAll(int32 PlayerIndex) {
@@ -371,6 +383,9 @@ void USBZCheatManager::KillTarget(int32 PlayerIndex) {
 void USBZCheatManager::KillPlayer(int32 PlayerIndex) {
 }
 
+void USBZCheatManager::KillCrewAI(int32 CrewAIIndex) {
+}
+
 void USBZCheatManager::KillAllCrewAI() {
 }
 
@@ -413,6 +428,9 @@ void USBZCheatManager::GiveToolAmmo(int32 Count, int32 PlayerIndex) {
 void USBZCheatManager::GiveThrowableAmmo(int32 Count, int32 ThrowableIndex, int32 PlayerIndex) {
 }
 
+void USBZCheatManager::GivePlayerArmor(int32 AddArmorChunkCount, float TraumaReductionScale, int32 PlayerIndex) {
+}
+
 void USBZCheatManager::GivePlaceableAmmo(int32 Count, int32 PlaceableIndex, int32 PlayerIndex) {
 }
 
@@ -434,7 +452,7 @@ void USBZCheatManager::FindClassReferences(const FName& ClassName, bool bIsSubCl
 void USBZCheatManager::FindBlocker(bool bIsComplex, float TraceDistance, float TraceRadius, float OverlapDistance, float OverlapRadius, int32 MaxHitCountTrace, int32 MaxHitCountOverlap, float DrawDuration, bool bIsDrawPersistent) {
 }
 
-void USBZCheatManager::EquipOverkillWeapon(int32 PlayerIndex) {
+void USBZCheatManager::EquipOverkillWeapon(bool bIsFirstEquip, int32 PlayerIndex) {
 }
 
 void USBZCheatManager::DumpPlayersMergePartyStatus() {

@@ -9,19 +9,31 @@ USBZPawnAttributeSet::USBZPawnAttributeSet() {
     this->HitByFragVoiceComment = NULL;
 }
 
-void USBZPawnAttributeSet::OnRep_OverHeal(const FGameplayAttributeData& OldOverHeal) {
+void USBZPawnAttributeSet::OnRep_OverHeal(const FGameplayAttributeData& OldValue) {
 }
 
-void USBZPawnAttributeSet::OnRep_Health(const FGameplayAttributeData& OldHealth) {
+void USBZPawnAttributeSet::OnRep_IncomingDamageMultiplier(const FGameplayAttributeData& OldValue) {
 }
 
-void USBZPawnAttributeSet::OnRep_Armor(const FGameplayAttributeData& OldArmor) {
+void USBZPawnAttributeSet::OnRep_Health(const FGameplayAttributeData& OldValue) {
+}
+
+void USBZPawnAttributeSet::OnRep_ArmorDamageReduction(const FGameplayAttributeData& OldValue) {
+}
+
+void USBZPawnAttributeSet::OnRep_Armor(const FGameplayAttributeData& OldValue) {
 }
 
 void USBZPawnAttributeSet::Multicast_SetOverHeal_Implementation(float NewCurrentValue) {
 }
 
+void USBZPawnAttributeSet::Multicast_SetIncomingDamageMultiplier_Implementation(float NewCurrentValue) {
+}
+
 void USBZPawnAttributeSet::Multicast_SetHealth_Implementation(float NewCurrentValue) {
+}
+
+void USBZPawnAttributeSet::Multicast_SetArmorDamageReduction_Implementation(float NewCurrentValue) {
 }
 
 void USBZPawnAttributeSet::Multicast_SetArmor_Implementation(float NewCurrentValue) {
@@ -33,6 +45,8 @@ void USBZPawnAttributeSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>&
     DOREPLIFETIME(USBZPawnAttributeSet, Health);
     DOREPLIFETIME(USBZPawnAttributeSet, Armor);
     DOREPLIFETIME(USBZPawnAttributeSet, OverHeal);
+    DOREPLIFETIME(USBZPawnAttributeSet, IncomingDamageMultiplier);
+    DOREPLIFETIME(USBZPawnAttributeSet, ArmorDamageReduction);
 }
 
 

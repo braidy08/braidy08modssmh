@@ -8,17 +8,11 @@
 #include "SBZEntitlementsTelemetryPayload.h"
 #include "SBZAnalyticsManager.generated.h"
 
-class USBZAnalyticsProvider;
-class USBZInfamyManager;
-
 UCLASS(Blueprintable)
 class USBZAnalyticsManager : public UObject {
     GENERATED_BODY()
 public:
 private:
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
-    USBZAnalyticsProvider* AnalyticsProvider;
-    
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     FDateTime GameLaunchedTimestamp;
     
@@ -41,7 +35,7 @@ public:
     void SendNotOwningHeistDetected(const FString& AccelByteUserId, const ESBZNotOwningHeistPolicyType NotOwningHeistAction, const bool bIsActionSuccessful, const FString& Description, const FString& AdditionalInformation);
     
     UFUNCTION(BlueprintCallable)
-    void SendInfamyChanged(USBZInfamyManager* InfamyManager, int32 NewInfamyExperience, int32 PreviousInfamyExperience);
+    void SendInfamyChanged(const int32 NewInfamyExperience, const int32 PreviousInfamyExperience, const int32 NewRenownLevel, const int32 PreviousRenownLevel);
     
     UFUNCTION(BlueprintCallable)
     void SendEntitlementsLoadedEvent(const FSBZEntitlementsTelemetryPayload& Payload);

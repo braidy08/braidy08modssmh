@@ -1,7 +1,7 @@
 #include "SBZModulesData.h"
 
 USBZModulesData::USBZModulesData() {
-    this->ExpectedModules.AddDefaulted(32);
+    this->ExpectedModules.AddDefaulted(35);
     this->KnownAlterations.AddDefaulted(3);
 }
 

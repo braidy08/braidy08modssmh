@@ -1,7 +1,7 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "ESBZArmorChunkType.h"
 #include "PD3ModifiableLoadoutData.h"
+#include "SBZArmorConfig.h"
 #include "SBZEquippableConfig.h"
 #include "SBZMaskConfig.h"
 #include "SBZOverskillLoadoutConfig.h"
@@ -10,13 +10,10 @@
 #include "SBZThrowableConfig.h"
 #include "PD3PlayerLoadout.generated.h"
 
-class USBZArmorData;
 class USBZGloveData;
-class USBZMaskData;
 class USBZPlayerAbilityData;
 class USBZPlayerCharacterData;
 class USBZSkillData;
-class USBZSuitData;
 
 USTRUCT(BlueprintType)
 struct STARBREEZE_API FPD3PlayerLoadout {
@@ -39,12 +36,6 @@ private:
     TArray<FSBZThrowableConfig> ThrowableConfigArray;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    USBZMaskData* MaskData;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    USBZSuitData* SuitData;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     USBZGloveData* GloveData;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -54,25 +45,28 @@ private:
     FSBZSuitConfig SuitConfig;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    USBZArmorData* ArmorData;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    TArray<ESBZArmorChunkType> ArmorChunkTypeArray;
+    FSBZArmorConfig ArmorConfig;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TArray<USBZSkillData*> SkillArray;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    TArray<FPD3ModifiableLoadoutData> ModifiableLoadoutDataArray;
+    TArray<USBZSkillData*> RemovedOverskillSkillArray;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TArray<FSBZOverskillProgressData> OverskillProgressDataArray;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TArray<FPD3ModifiableLoadoutData> ModifiableLoadoutDataArray;
     
     UPROPERTY(EditAnywhere, NotReplicated, SkipSerialization, Transient, meta=(AllowPrivateAccess=true))
     int8 PendingValidationCount;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, NotReplicated, SkipSerialization, Transient, meta=(AllowPrivateAccess=true))
     bool bIsSkillArrayValidated;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, NotReplicated, SkipSerialization, Transient, meta=(AllowPrivateAccess=true))
+    bool bIsOverskillArrayValidated;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, NotReplicated, SkipSerialization, Transient, meta=(AllowPrivateAccess=true))
     USBZPlayerAbilityData* AbilityData;

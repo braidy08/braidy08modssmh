@@ -7,6 +7,7 @@
 #include "SBZPlayerAttributeSet.generated.h"
 
 class USBZPlayerAbilityData;
+class USBZPlayerMovementWeightAsset;
 
 UCLASS(Blueprintable)
 class USBZPlayerAttributeSet : public USBZCharacterAttributeSet {
@@ -144,17 +145,11 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FGameplayAttributeData DefeatCuffedTime;
     
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, ReplicatedUsing=OnRep_Dodge, meta=(AllowPrivateAccess=true))
-    FGameplayAttributeData Dodge;
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FGameplayAttributeData DodgeChance;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FGameplayAttributeData DodgeMax;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FGameplayAttributeData DodgeReplenishDelay;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FGameplayAttributeData DodgeReplenishSpeed;
+    FGameplayAttributeData DodgeChanceMax;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FGameplayAttributeData CriticalHealthMax;
@@ -163,9 +158,6 @@ public:
     FGameplayAttributeData CriticalHealthDamageScale;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FGameplayAttributeData ArmorChunk;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, ReplicatedUsing=OnRep_ArmorChunkCount, meta=(AllowPrivateAccess=true))
     FGameplayAttributeData ArmorChunkCount;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -199,13 +191,13 @@ public:
     FGameplayAttributeData MinRespawnDownedCount;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FGameplayAttributeData MinRespawnWeaponMagazineCount;
+    FGameplayAttributeData MinRespawnWeaponAmmoScale;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FGameplayAttributeData MinRespawnThrowableAmmo;
+    FGameplayAttributeData MinRespawnThrowableAmmoScale;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FGameplayAttributeData MinRespawnEquippableAmmo;
+    FGameplayAttributeData MinRespawnPlaceableAmmoScale;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, ReplicatedUsing=OnRep_HealthTrauma, meta=(AllowPrivateAccess=true))
     FGameplayAttributeData HealthTrauma;
@@ -216,12 +208,24 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, ReplicatedUsing=OnRep_ConsumableCount, meta=(AllowPrivateAccess=true))
     FGameplayAttributeData ConsumableCount;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, ReplicatedUsing=OnRep_OverskillProgression, meta=(AllowPrivateAccess=true))
+    FGameplayAttributeData OverskillProgression;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    FGameplayAttributeData OverskillProgressionMax;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, ReplicatedUsing=OnRep_OutgoingArmorPenetration, meta=(AllowPrivateAccess=true))
+    FGameplayAttributeData OutgoingArmorPenetration;
+    
 protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     USBZPlayerAbilityData* AbilityData;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TArray<FSBZWeightTagData> WeightTagDataArray;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    USBZPlayerMovementWeightAsset* WeightAssetOverride;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     TArray<FSBZArmorChunkTypeData> ArmorChunkTypeDataArray;
@@ -287,22 +291,22 @@ protected:
     void OnRep_PrimaryEquippableAmmoInventory(const FGameplayAttributeData& OldData);
     
     UFUNCTION(BlueprintCallable)
+    void OnRep_OverskillProgression(const FGameplayAttributeData& OldValue);
+    
+    UFUNCTION(BlueprintCallable)
+    void OnRep_OutgoingArmorPenetration(const FGameplayAttributeData& OldValue);
+    
+    UFUNCTION(BlueprintCallable)
     void OnRep_HealthTrauma(const FGameplayAttributeData& OldArmorTrauma);
     
     UFUNCTION(BlueprintCallable)
     void OnRep_DownedCount(const FGameplayAttributeData& OldDownedCount);
     
     UFUNCTION(BlueprintCallable)
-    void OnRep_Dodge(const FGameplayAttributeData& OldDodge);
-    
-    UFUNCTION(BlueprintCallable)
     void OnRep_ConsumableCount(const FGameplayAttributeData& OldConsumableCount);
     
     UFUNCTION(BlueprintCallable)
     void OnRep_ArmorTrauma(const FGameplayAttributeData& OldArmorTrauma);
-    
-    UFUNCTION(BlueprintCallable)
-    void OnRep_ArmorChunkCount(const FGameplayAttributeData& OldArmorChunkCount);
     
     UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
     void Multicast_SetTertiaryToolPlaceableAmmoInventory(float NewCurrentValue);
@@ -358,6 +362,14 @@ protected:
     UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
     void Multicast_SetPrimaryEquippableAmmoInventory(float NewCurrentValue);
     
+public:
+    UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
+    void Multicast_SetOverskillProgression(float NewCurrentValue);
+    
+    UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
+    void Multicast_SetOutgoingArmorPenetration(float NewCurrentValue);
+    
+protected:
     UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
     void Multicast_SetHealthTrauma(float NewCurrentValue);
     
@@ -365,16 +377,10 @@ protected:
     void Multicast_SetDownedCount(float NewCurrentValue);
     
     UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
-    void Multicast_SetDodge(float NewCurrentValue);
-    
-    UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
     void Multicast_SetConsumableCount(float NewCurrentValue);
     
     UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
     void Multicast_SetArmorTrauma(float NewCurrentValue);
-    
-    UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
-    void Multicast_SetArmorChunkCount(float NewCurrentValue);
     
 };
 

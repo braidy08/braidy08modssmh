@@ -8,13 +8,11 @@ USBZLoginScreenBaseWidget::USBZLoginScreenBaseWidget() {
     this->LogoP3 = NULL;
     this->ClickToStartButton = NULL;
     this->ClickToStartOverlay = NULL;
+    this->LoadProgressionBar = NULL;
     this->bIsWidgetReady = false;
 }
 
 void USBZLoginScreenBaseWidget::WidgetReady() {
-}
-
-void USBZLoginScreenBaseWidget::ShowPrivacyPolicyPopup() {
 }
 
 void USBZLoginScreenBaseWidget::ShowEULAPopup() {
@@ -28,10 +26,9 @@ void USBZLoginScreenBaseWidget::ShowEpilepsyWarningPopup() {
 void USBZLoginScreenBaseWidget::SetLoadingCanvasPanelVisibility(ESlateVisibility InVisibility) {
 }
 
-void USBZLoginScreenBaseWidget::OnPrivacyPopUpClosed(FName ClosingActionName) {
+
+void USBZLoginScreenBaseWidget::OnLoadProgressionUpdate(int32 CurrentProgress, int32 MaxProgress) {
 }
-
-
 
 
 void USBZLoginScreenBaseWidget::OnEULAPopUpClosed(FName ClosingActionName) {

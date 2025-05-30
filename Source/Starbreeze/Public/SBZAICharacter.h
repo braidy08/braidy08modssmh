@@ -14,6 +14,7 @@
 #include "SBZAIVisualDetectorInterface.h"
 #include "SBZAutoAimInterface.h"
 #include "SBZBehaviorCategoryChangedDelegateDelegate.h"
+#include "SBZKilledContextData.h"
 #include "SBZMarkableInterface.h"
 #include "SBZOnEnabledAsObjectiveDelegate.h"
 #include "SBZOnHogTiedDelegate.h"
@@ -63,6 +64,9 @@ public:
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FGameplayTagContainer StunTagContainer;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FGameplayTagContainer OperatorHackedTagContainer;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FName BulletMagnetismSocketName;
@@ -343,6 +347,9 @@ private:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     TArray<FUniqueNetIdRepl> HackedByPlayerArray;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    FSBZKilledContextData KillContextData;
+    
 public:
     ASBZAICharacter(const FObjectInitializer& ObjectInitializer);
 
@@ -399,6 +406,14 @@ private:
     UFUNCTION(BlueprintCallable)
     void OnPredictedAbortInteraction(USBZBaseInteractableComponent* InInteractable, USBZInteractorComponent* InInteractor, bool bInIsLocallyControlled);
     
+public:
+    UFUNCTION(BlueprintCallable)
+    void OnOperatorSkillUsed(bool bIsBase, bool bIsMarkMania, bool bIsWhoYouGonnaCall, bool bIsRadioSilence);
+    
+    UFUNCTION(BlueprintCallable)
+    void OnOperatorSkillDeactivated(bool bIsBaseActive, bool bIsUpgrade1, bool bIsUpgrade5, bool bIsUpgrade3);
+    
+private:
     UFUNCTION(BlueprintCallable)
     void OnNegotiationTradeTypeChanged(ESBZNegotiationTradeType OldType, ESBZNegotiationTradeType NewType);
     
@@ -444,6 +459,9 @@ public:
     void Multicast_RoomScanning(ESBZRoomScanningType RoomScanningType, int32 AnimationIndex);
     
 private:
+    UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
+    void Multicast_RemoveHacked();
+    
     UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
     void Multicast_HostageState(uint8 InHostageState);
     

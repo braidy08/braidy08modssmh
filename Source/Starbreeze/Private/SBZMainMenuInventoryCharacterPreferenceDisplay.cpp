@@ -9,6 +9,9 @@ USBZMainMenuInventoryCharacterPreferenceDisplay::USBZMainMenuInventoryCharacterP
 void USBZMainMenuInventoryCharacterPreferenceDisplay::SetActiveIndex(int32 NewActiveIndex) {
 }
 
+void USBZMainMenuInventoryCharacterPreferenceDisplay::OnGameInstallStateChanged(bool bIsInstallPending) {
+}
+
 void USBZMainMenuInventoryCharacterPreferenceDisplay::NativeOnPreferredCharacterSlotButtonSelected(USBZCharacterPreferenceCharacterSlotButton* SelectedPreferredCharacterSlotButton) {
 }
 
@@ -16,7 +19,7 @@ bool USBZMainMenuInventoryCharacterPreferenceDisplay::IsActiveSlotEmpty() const 
     return false;
 }
 
-void USBZMainMenuInventoryCharacterPreferenceDisplay::InitializeCharacterDisplays() {
+void USBZMainMenuInventoryCharacterPreferenceDisplay::InitializeCharacterDisplays(int32 SlotIndex) {
 }
 
 void USBZMainMenuInventoryCharacterPreferenceDisplay::IncrementActiveIndex() {

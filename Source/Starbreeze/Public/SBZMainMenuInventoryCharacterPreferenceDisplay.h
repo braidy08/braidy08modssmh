@@ -41,6 +41,9 @@ public:
     
 private:
     UFUNCTION(BlueprintCallable)
+    void OnGameInstallStateChanged(bool bIsInstallPending);
+    
+    UFUNCTION(BlueprintCallable)
     void NativeOnPreferredCharacterSlotButtonSelected(USBZCharacterPreferenceCharacterSlotButton* SelectedPreferredCharacterSlotButton);
     
 public:
@@ -49,7 +52,7 @@ public:
     
 private:
     UFUNCTION(BlueprintCallable)
-    void InitializeCharacterDisplays();
+    void InitializeCharacterDisplays(int32 SlotIndex);
     
 public:
     UFUNCTION(BlueprintCallable)

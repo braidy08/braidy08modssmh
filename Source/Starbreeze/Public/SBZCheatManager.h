@@ -100,6 +100,9 @@ public:
     void SimulateChallengeNotificationReceived();
     
     UFUNCTION(BlueprintCallable, Exec)
+    void SetVehicleMovementDebugLogEnabled(bool bLogEnabled);
+    
+    UFUNCTION(BlueprintCallable, Exec)
     void SetToolAmmo(int32 Count, int32 PlayerIndex);
     
     UFUNCTION(BlueprintCallable, Exec)
@@ -145,6 +148,9 @@ public:
     void SetPlayerMergePartySelected(bool bIsMergePartySelected);
     
     UFUNCTION(BlueprintCallable, Exec)
+    void SetPlayerMaskMould(const FName& PlayerMaskMouldName, int32 PlayerIndex);
+    
+    UFUNCTION(BlueprintCallable, Exec)
     void SetPlayerMask(const FName& PlayerMaskName, int32 PlayerIndex);
     
     UFUNCTION(BlueprintCallable, Exec)
@@ -188,6 +194,9 @@ public:
     
     UFUNCTION(BlueprintCallable, Exec)
     void SetOverkillWeaponLoadout(const FName& DataName, int32 PlayerIndex);
+    
+    UFUNCTION(BlueprintCallable, Exec)
+    void SetOverkillEnabled(bool bIsEnabled, int32 PlayerIndex);
     
     UFUNCTION(BlueprintCallable, Exec)
     void SetOptionalMilestonePassed(const FString& OptionalMilestoneName);
@@ -289,7 +298,7 @@ public:
     void SetAmmoInventory(float NewAmmoCount, int32 WeaponIndex, int32 PlayerIndex);
     
     UFUNCTION(BlueprintCallable, Exec)
-    void SetAllSkills(bool bIsAcquired, int32 PlayerIndex);
+    void SetAllSkills(bool bIsAcquired, bool bIsRemoveAllowed, bool bIsVersion2, int32 PlayerIndex);
     
     UFUNCTION(BlueprintCallable, Exec)
     void SetAddMissionFailedTimeout(float AddTimeout);
@@ -335,6 +344,9 @@ public:
     
     UFUNCTION(BlueprintCallable, Exec)
     void ReportBug(const FString& Description, bool bIsEverywhere, bool bIsBlockerChecked, bool bIsInteractableChecked);
+    
+    UFUNCTION(BlueprintCallable, Exec)
+    void ReplenishPlayerArmor(int32 PlayerIndex);
     
     UFUNCTION(BlueprintCallable, Exec)
     void RefreshPlayerAbilityBuffAll(int32 PlayerIndex);
@@ -416,6 +428,9 @@ public:
     void KillPlayer(int32 PlayerIndex);
     
     UFUNCTION(BlueprintCallable, Exec)
+    void KillCrewAI(int32 CrewAIIndex);
+    
+    UFUNCTION(BlueprintCallable, Exec)
     void KillAllCrewAI();
     
     UFUNCTION(BlueprintCallable, Exec)
@@ -458,6 +473,9 @@ public:
     void GiveThrowableAmmo(int32 Count, int32 ThrowableIndex, int32 PlayerIndex);
     
     UFUNCTION(BlueprintCallable, Exec)
+    void GivePlayerArmor(int32 AddArmorChunkCount, float TraumaReductionScale, int32 PlayerIndex);
+    
+    UFUNCTION(BlueprintCallable, Exec)
     void GivePlaceableAmmo(int32 Count, int32 PlaceableIndex, int32 PlayerIndex);
     
     UFUNCTION(BlueprintCallable, Exec)
@@ -479,7 +497,7 @@ public:
     void FindBlocker(bool bIsComplex, float TraceDistance, float TraceRadius, float OverlapDistance, float OverlapRadius, int32 MaxHitCountTrace, int32 MaxHitCountOverlap, float DrawDuration, bool bIsDrawPersistent);
     
     UFUNCTION(BlueprintCallable, Exec)
-    void EquipOverkillWeapon(int32 PlayerIndex);
+    void EquipOverkillWeapon(bool bIsFirstEquip, int32 PlayerIndex);
     
     UFUNCTION(BlueprintCallable, Exec)
     void DumpPlayersMergePartyStatus();

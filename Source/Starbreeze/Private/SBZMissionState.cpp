@@ -14,8 +14,12 @@
 
 ASBZMissionState::ASBZMissionState(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
     this->RandomSeed = -1;
-    this->ServerChangelist = 748847;
+    this->ServerChangelist = 829894;
     this->Difficulty = ESBZDifficulty::Default;
+    this->PickupDifficultyModifierArray[0] = 1.00f;
+    this->PickupDifficultyModifierArray[1] = 1.00f;
+    this->PickupDifficultyModifierArray[2] = 1.00f;
+    this->PickupDifficultyModifierArray[3] = 1.00f;
     this->PredictionTimeOutSeconds = 1.00f;
     this->ServerUnblockAbilityEarlierSeconds = 0.25f;
     this->MissionStartTime = 0;
@@ -38,6 +42,8 @@ ASBZMissionState::ASBZMissionState(const FObjectInitializer& ObjectInitializer) 
     this->KillingSpreeAmount = 5;
     this->DropKillingSpreeWaitTime = 2.00f;
     this->MaxQueuedCosmeticDestruction = 10;
+    this->DroneDeliverySquadPawn = NULL;
+    this->LastOverkillWeaponCaller = NULL;
     this->SeasonalEventItemCount = 0;
     this->DSChallengeManager = NULL;
     this->OverkillWeaponCooldown = 45.00f;
@@ -105,7 +111,7 @@ void ASBZMissionState::OnRep_BlockedBagMarkers() {
 void ASBZMissionState::OnInstantLootTaken(const FString& LootName) {
 }
 
-void ASBZMissionState::OnBlackScreenStarted() {
+void ASBZMissionState::OnBlackScreenStarted(const bool bIsRestart) {
 }
 
 void ASBZMissionState::OnAmmoSpecialistHighGrainSkillTimeChanged(float OldTime) {
@@ -133,6 +139,12 @@ void ASBZMissionState::Multicast_SetEscapeTimeLeft_Implementation(const int32 Ne
 }
 
 void ASBZMissionState::Multicast_SetBlockedBagMarkers_Implementation(const FGameplayTagContainer& InBlockedBagMarkers) {
+}
+
+void ASBZMissionState::Multicast_ServerOverskillOperatorDeactivated_Implementation(bool bIsBase, bool bIsMarkMania, bool bIsWhoYouGonnaCall, bool bIsRadioSilence) {
+}
+
+void ASBZMissionState::Multicast_ServerOverskillOperatorActivated_Implementation(bool bIsBase, bool bIsMarkMania, bool bIsWhoYouGonnaCall, bool bIsRadioSilence) {
 }
 
 void ASBZMissionState::Multicast_OnAmmoSpecialistHighGrainSkillDeactivated_Implementation() {

@@ -36,6 +36,38 @@
 			"Type": "SymbolFile"
 		},
 		{
+			"Path": "$(ProjectDir)/Plugins/EnginePlugins/Wwise/Binaries/Win64/UE4Editor-AkAudio.dll",
+			"Type": "DynamicLibrary"
+		},
+		{
+			"Path": "$(ProjectDir)/Plugins/EnginePlugins/Wwise/Binaries/Win64/UE4Editor-AkAudio.pdb",
+			"Type": "SymbolFile"
+		},
+		{
+			"Path": "$(EngineDir)/Plugins/Editor/GeometryMode/Binaries/Win64/UE4Editor-GeometryMode.dll",
+			"Type": "DynamicLibrary"
+		},
+		{
+			"Path": "$(EngineDir)/Plugins/Editor/GeometryMode/Binaries/Win64/UE4Editor-GeometryMode.pdb",
+			"Type": "SymbolFile"
+		},
+		{
+			"Path": "$(EngineDir)/Plugins/Editor/GeometryMode/Binaries/Win64/UE4Editor-BspMode.dll",
+			"Type": "DynamicLibrary"
+		},
+		{
+			"Path": "$(EngineDir)/Plugins/Editor/GeometryMode/Binaries/Win64/UE4Editor-BspMode.pdb",
+			"Type": "SymbolFile"
+		},
+		{
+			"Path": "$(EngineDir)/Plugins/Editor/GeometryMode/Binaries/Win64/UE4Editor-TextureAlignMode.dll",
+			"Type": "DynamicLibrary"
+		},
+		{
+			"Path": "$(EngineDir)/Plugins/Editor/GeometryMode/Binaries/Win64/UE4Editor-TextureAlignMode.pdb",
+			"Type": "SymbolFile"
+		},
+		{
 			"Path": "$(EngineDir)/Plugins/Experimental/PlatformCrypto/Binaries/Win64/UE4Editor-PlatformCrypto.dll",
 			"Type": "DynamicLibrary"
 		},
@@ -540,14 +572,6 @@
 			"Type": "SymbolFile"
 		},
 		{
-			"Path": "$(ProjectDir)/Plugins/SBZAnalyticsLegacy/Binaries/Win64/UE4Editor-SBZAnalyticsLegacy.dll",
-			"Type": "DynamicLibrary"
-		},
-		{
-			"Path": "$(ProjectDir)/Plugins/SBZAnalyticsLegacy/Binaries/Win64/UE4Editor-SBZAnalyticsLegacy.pdb",
-			"Type": "SymbolFile"
-		},
-		{
 			"Path": "$(ProjectDir)/Plugins/AccelByteUe4Sdk/Binaries/Win64/UE4Editor-AccelByteUe4Sdk.dll",
 			"Type": "DynamicLibrary"
 		},
@@ -820,11 +844,11 @@
 			"Type": "SymbolFile"
 		},
 		{
-			"Path": "$(ProjectDir)/Plugins/EnginePlugins/Runtime/Intel/XeSS/Binaries/Win64/UE4Editor-XeSSPlugin.dll",
+			"Path": "$(ProjectDir)/Plugins/EnginePlugins/Runtime/Intel/XeSS/Binaries/Win64/UE4Editor-XeSSCore.dll",
 			"Type": "DynamicLibrary"
 		},
 		{
-			"Path": "$(ProjectDir)/Plugins/EnginePlugins/Runtime/Intel/XeSS/Binaries/Win64/UE4Editor-XeSSPlugin.pdb",
+			"Path": "$(ProjectDir)/Plugins/EnginePlugins/Runtime/Intel/XeSS/Binaries/Win64/UE4Editor-XeSSCore.pdb",
 			"Type": "SymbolFile"
 		},
 		{
@@ -833,6 +857,22 @@
 		},
 		{
 			"Path": "$(ProjectDir)/Plugins/EnginePlugins/Runtime/Intel/XeSS/Binaries/Win64/UE4Editor-XeSSBlueprint.pdb",
+			"Type": "SymbolFile"
+		},
+		{
+			"Path": "$(ProjectDir)/Plugins/EnginePlugins/Runtime/Intel/XeSS/Binaries/Win64/UE4Editor-XeLLBlueprint.dll",
+			"Type": "DynamicLibrary"
+		},
+		{
+			"Path": "$(ProjectDir)/Plugins/EnginePlugins/Runtime/Intel/XeSS/Binaries/Win64/UE4Editor-XeLLBlueprint.pdb",
+			"Type": "SymbolFile"
+		},
+		{
+			"Path": "$(ProjectDir)/Plugins/EnginePlugins/Runtime/Intel/XeSS/Binaries/Win64/UE4Editor-XeFGBlueprint.dll",
+			"Type": "DynamicLibrary"
+		},
+		{
+			"Path": "$(ProjectDir)/Plugins/EnginePlugins/Runtime/Intel/XeSS/Binaries/Win64/UE4Editor-XeFGBlueprint.pdb",
 			"Type": "SymbolFile"
 		},
 		{
@@ -868,6 +908,14 @@
 			"Type": "SymbolFile"
 		},
 		{
+			"Path": "$(ProjectDir)/Plugins/DummyFactories/Binaries/Win64/UE4Editor-DummyFactories.dll",
+			"Type": "DynamicLibrary"
+		},
+		{
+			"Path": "$(ProjectDir)/Plugins/DummyFactories/Binaries/Win64/UE4Editor-DummyFactories.pdb",
+			"Type": "SymbolFile"
+		},
+		{
 			"Path": "$(ProjectDir)/Plugins/EnginePlugins/ACLPlugin/Binaries/Win64/UE4Editor-ACLPlugin.dll",
 			"Type": "DynamicLibrary"
 		},
@@ -876,43 +924,19 @@
 			"Type": "SymbolFile"
 		},
 		{
-			"Path": "$(ProjectDir)/Plugins/EnginePlugins/Wwise/Binaries/Win64/UE4Editor-AkAudio.dll",
-			"Type": "DynamicLibrary"
-		},
-		{
-			"Path": "$(ProjectDir)/Plugins/EnginePlugins/Wwise/Binaries/Win64/UE4Editor-AkAudio.pdb",
-			"Type": "SymbolFile"
-		},
-		{
-			"Path": "$(EngineDir)/Plugins/Editor/GeometryMode/Binaries/Win64/UE4Editor-GeometryMode.dll",
-			"Type": "DynamicLibrary"
-		},
-		{
-			"Path": "$(EngineDir)/Plugins/Editor/GeometryMode/Binaries/Win64/UE4Editor-GeometryMode.pdb",
-			"Type": "SymbolFile"
-		},
-		{
-			"Path": "$(EngineDir)/Plugins/Editor/GeometryMode/Binaries/Win64/UE4Editor-BspMode.dll",
-			"Type": "DynamicLibrary"
-		},
-		{
-			"Path": "$(EngineDir)/Plugins/Editor/GeometryMode/Binaries/Win64/UE4Editor-BspMode.pdb",
-			"Type": "SymbolFile"
-		},
-		{
-			"Path": "$(EngineDir)/Plugins/Editor/GeometryMode/Binaries/Win64/UE4Editor-TextureAlignMode.dll",
-			"Type": "DynamicLibrary"
-		},
-		{
-			"Path": "$(EngineDir)/Plugins/Editor/GeometryMode/Binaries/Win64/UE4Editor-TextureAlignMode.pdb",
-			"Type": "SymbolFile"
-		},
-		{
 			"Path": "$(ProjectDir)/Plugins/Gridly/Binaries/Win64/UE4Editor-Gridly.dll",
 			"Type": "DynamicLibrary"
 		},
 		{
 			"Path": "$(ProjectDir)/Plugins/Gridly/Binaries/Win64/UE4Editor-Gridly.pdb",
+			"Type": "SymbolFile"
+		},
+		{
+			"Path": "$(ProjectDir)/Plugins/SBZAnalyticsLegacy/Binaries/Win64/UE4Editor-SBZAnalyticsLegacy.dll",
+			"Type": "DynamicLibrary"
+		},
+		{
+			"Path": "$(ProjectDir)/Plugins/SBZAnalyticsLegacy/Binaries/Win64/UE4Editor-SBZAnalyticsLegacy.pdb",
 			"Type": "SymbolFile"
 		},
 		{
@@ -1553,6 +1577,62 @@
 		},
 		{
 			"Path": "$(EngineDir)/Plugins/Lumin/MagicLeapLightEstimation/Binaries/Win64/UE4Editor-MagicLeapLightEstimation.pdb",
+			"Type": "SymbolFile"
+		},
+		{
+			"Path": "$(EngineDir)/Plugins/Marketplace/Developer/RiderLink/Binaries/Win64/UE4Editor-RD.dll",
+			"Type": "DynamicLibrary"
+		},
+		{
+			"Path": "$(EngineDir)/Plugins/Marketplace/Developer/RiderLink/Binaries/Win64/UE4Editor-RD.pdb",
+			"Type": "SymbolFile"
+		},
+		{
+			"Path": "$(EngineDir)/Plugins/Marketplace/Developer/RiderLink/Binaries/Win64/UE4Editor-RiderLink.dll",
+			"Type": "DynamicLibrary"
+		},
+		{
+			"Path": "$(EngineDir)/Plugins/Marketplace/Developer/RiderLink/Binaries/Win64/UE4Editor-RiderLink.pdb",
+			"Type": "SymbolFile"
+		},
+		{
+			"Path": "$(EngineDir)/Plugins/Marketplace/Developer/RiderLink/Binaries/Win64/UE4Editor-RiderLogging.dll",
+			"Type": "DynamicLibrary"
+		},
+		{
+			"Path": "$(EngineDir)/Plugins/Marketplace/Developer/RiderLink/Binaries/Win64/UE4Editor-RiderLogging.pdb",
+			"Type": "SymbolFile"
+		},
+		{
+			"Path": "$(EngineDir)/Plugins/Marketplace/Developer/RiderLink/Binaries/Win64/UE4Editor-RiderBlueprint.dll",
+			"Type": "DynamicLibrary"
+		},
+		{
+			"Path": "$(EngineDir)/Plugins/Marketplace/Developer/RiderLink/Binaries/Win64/UE4Editor-RiderBlueprint.pdb",
+			"Type": "SymbolFile"
+		},
+		{
+			"Path": "$(EngineDir)/Plugins/Marketplace/Developer/RiderLink/Binaries/Win64/UE4Editor-RiderGameControl.dll",
+			"Type": "DynamicLibrary"
+		},
+		{
+			"Path": "$(EngineDir)/Plugins/Marketplace/Developer/RiderLink/Binaries/Win64/UE4Editor-RiderGameControl.pdb",
+			"Type": "SymbolFile"
+		},
+		{
+			"Path": "$(EngineDir)/Plugins/Marketplace/Developer/RiderLink/Binaries/Win64/UE4Editor-RiderShaderInfo.dll",
+			"Type": "DynamicLibrary"
+		},
+		{
+			"Path": "$(EngineDir)/Plugins/Marketplace/Developer/RiderLink/Binaries/Win64/UE4Editor-RiderShaderInfo.pdb",
+			"Type": "SymbolFile"
+		},
+		{
+			"Path": "$(EngineDir)/Plugins/Marketplace/Developer/RiderLink/Binaries/Win64/UE4Editor-RiderLC.dll",
+			"Type": "DynamicLibrary"
+		},
+		{
+			"Path": "$(EngineDir)/Plugins/Marketplace/Developer/RiderLink/Binaries/Win64/UE4Editor-RiderLC.pdb",
 			"Type": "SymbolFile"
 		},
 		{
@@ -4864,6 +4944,14 @@
 			"Type": "RequiredResource"
 		},
 		{
+			"Path": "$(ProjectDir)/Plugins/EnginePlugins/Wwise/Binaries/Win64/UE4Editor.modules",
+			"Type": "RequiredResource"
+		},
+		{
+			"Path": "$(EngineDir)/Plugins/Editor/GeometryMode/Binaries/Win64/UE4Editor.modules",
+			"Type": "RequiredResource"
+		},
+		{
 			"Path": "$(EngineDir)/Plugins/Experimental/PlatformCrypto/Binaries/Win64/UE4Editor.modules",
 			"Type": "RequiredResource"
 		},
@@ -5000,10 +5088,6 @@
 			"Type": "RequiredResource"
 		},
 		{
-			"Path": "$(ProjectDir)/Plugins/SBZAnalyticsLegacy/Binaries/Win64/UE4Editor.modules",
-			"Type": "RequiredResource"
-		},
-		{
 			"Path": "$(ProjectDir)/Plugins/AccelByteUe4Sdk/Binaries/Win64/UE4Editor.modules",
 			"Type": "RequiredResource"
 		},
@@ -5104,19 +5188,19 @@
 			"Type": "RequiredResource"
 		},
 		{
+			"Path": "$(ProjectDir)/Plugins/DummyFactories/Binaries/Win64/UE4Editor.modules",
+			"Type": "RequiredResource"
+		},
+		{
 			"Path": "$(ProjectDir)/Plugins/EnginePlugins/ACLPlugin/Binaries/Win64/UE4Editor.modules",
 			"Type": "RequiredResource"
 		},
 		{
-			"Path": "$(ProjectDir)/Plugins/EnginePlugins/Wwise/Binaries/Win64/UE4Editor.modules",
-			"Type": "RequiredResource"
-		},
-		{
-			"Path": "$(EngineDir)/Plugins/Editor/GeometryMode/Binaries/Win64/UE4Editor.modules",
-			"Type": "RequiredResource"
-		},
-		{
 			"Path": "$(ProjectDir)/Plugins/Gridly/Binaries/Win64/UE4Editor.modules",
+			"Type": "RequiredResource"
+		},
+		{
+			"Path": "$(ProjectDir)/Plugins/SBZAnalyticsLegacy/Binaries/Win64/UE4Editor.modules",
 			"Type": "RequiredResource"
 		},
 		{
@@ -5308,6 +5392,10 @@
 			"Type": "RequiredResource"
 		},
 		{
+			"Path": "$(EngineDir)/Plugins/Marketplace/Developer/RiderLink/Binaries/Win64/UE4Editor.modules",
+			"Type": "RequiredResource"
+		},
+		{
 			"Path": "$(EngineDir)/Plugins/Media/MediaPlayerEditor/Binaries/Win64/UE4Editor.modules",
 			"Type": "RequiredResource"
 		},
@@ -5431,6 +5519,14 @@
 	"RuntimeDependencies": [
 		{
 			"Path": "$(ProjectDir)/PAYDAY3.uproject",
+			"Type": "UFS"
+		},
+		{
+			"Path": "$(ProjectDir)/Plugins/EnginePlugins/Wwise/Wwise.uplugin",
+			"Type": "UFS"
+		},
+		{
+			"Path": "$(EngineDir)/Plugins/Editor/GeometryMode/GeometryMode.uplugin",
 			"Type": "UFS"
 		},
 		{
@@ -5602,10 +5698,6 @@
 			"Type": "UFS"
 		},
 		{
-			"Path": "$(ProjectDir)/Plugins/SBZAnalyticsLegacy/SBZAnalyticsLegacy.uplugin",
-			"Type": "UFS"
-		},
-		{
 			"Path": "$(ProjectDir)/Plugins/AccelByteUe4Sdk/AccelByteUe4Sdk.uplugin",
 			"Type": "UFS"
 		},
@@ -5734,6 +5826,10 @@
 			"Type": "UFS"
 		},
 		{
+			"Path": "$(ProjectDir)/Plugins/DummyFactories/DummyFactories.uplugin",
+			"Type": "UFS"
+		},
+		{
 			"Path": "$(ProjectDir)/Plugins/EnginePlugins/ACLPlugin/ACLPlugin.uplugin",
 			"Type": "UFS"
 		},
@@ -5742,15 +5838,11 @@
 			"Type": "UFS"
 		},
 		{
-			"Path": "$(ProjectDir)/Plugins/EnginePlugins/Wwise/Wwise.uplugin",
-			"Type": "UFS"
-		},
-		{
-			"Path": "$(EngineDir)/Plugins/Editor/GeometryMode/GeometryMode.uplugin",
-			"Type": "UFS"
-		},
-		{
 			"Path": "$(ProjectDir)/Plugins/Gridly/Gridly.uplugin",
+			"Type": "UFS"
+		},
+		{
+			"Path": "$(ProjectDir)/Plugins/SBZAnalyticsLegacy/SBZAnalyticsLegacy.uplugin",
 			"Type": "UFS"
 		},
 		{
@@ -5943,6 +6035,10 @@
 		},
 		{
 			"Path": "$(EngineDir)/Plugins/Lumin/MagicLeapLightEstimation/MagicLeapLightEstimation.uplugin",
+			"Type": "UFS"
+		},
+		{
+			"Path": "$(EngineDir)/Plugins/Marketplace/Developer/RiderLink/RiderLink.uplugin",
 			"Type": "UFS"
 		},
 		{

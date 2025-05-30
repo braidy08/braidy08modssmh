@@ -12,11 +12,12 @@
 #include "SBZModularCharacterComponent.h"
 #include "SBZPlayerInteractableComponent.h"
 #include "SBZPlayerInteractorComponent.h"
+#include "SBZPlayerMeleeComponent.h"
 #include "SBZPlayerMovementComponent.h"
 #include "SBZRecoilComponent.h"
 #include "SBZShoutoutComponent.h"
 
-ASBZPlayerCharacter::ASBZPlayerCharacter(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer.SetDefaultSubobjectClass<USBZModularCharacterComponent>(TEXT("CharacterMesh0")).SetDefaultSubobjectClass<USBZPlayerMovementComponent>(TEXT("CharMoveComp")).SetDefaultSubobjectClass<USBZPlayerInteractableComponent>(TEXT("SBZInteractableComponent"))) {
+ASBZPlayerCharacter::ASBZPlayerCharacter(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer.SetDefaultSubobjectClass<USBZModularCharacterComponent>(TEXT("CharacterMesh0")).SetDefaultSubobjectClass<USBZPlayerMovementComponent>(TEXT("CharMoveComp")).SetDefaultSubobjectClass<USBZPlayerInteractableComponent>(TEXT("SBZInteractableComponent")).SetDefaultSubobjectClass<USBZPlayerMeleeComponent>(TEXT("SBZMeleeComponent"))) {
     this->SpawnCollisionHandlingMethod = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
     this->AutoPossessAI = EAutoPossessAI::Disabled;
     this->VisualDetectionMultiplierSprinting = 1.00f;
@@ -59,11 +60,16 @@ ASBZPlayerCharacter::ASBZPlayerCharacter(const FObjectInitializer& ObjectInitial
     this->LandedFeedback = NULL;
     this->JumpedFeedback = NULL;
     this->ArmorDepletedFeedback = NULL;
+    this->ArmorChunkDepletedFeedback[0] = NULL;
+    this->ArmorChunkDepletedFeedback[1] = NULL;
+    this->ArmorChunkDepletedFeedback[2] = NULL;
     this->ArmorReplenishedFeedback = NULL;
-    this->ArmorDamageFeedback = NULL;
-    this->DodgeDepletedFeedback = NULL;
-    this->DodgeReplenishedFeedback = NULL;
-    this->DodgeDamageFeedback = NULL;
+    this->ArmorChunkReplenishedFeedback[0] = NULL;
+    this->ArmorChunkReplenishedFeedback[1] = NULL;
+    this->ArmorChunkReplenishedFeedback[2] = NULL;
+    this->ArmorChunkDamageFeedback[0] = NULL;
+    this->ArmorChunkDamageFeedback[1] = NULL;
+    this->ArmorChunkDamageFeedback[2] = NULL;
     this->HealthDamageFeedback = NULL;
     this->SubduedDamageFeedback = NULL;
     this->DefeatFeedback = NULL;
@@ -75,6 +81,8 @@ ASBZPlayerCharacter::ASBZPlayerCharacter(const FObjectInitializer& ObjectInitial
     this->OverHealGainedFeedback = NULL;
     this->OverHealRestoredFeedback = NULL;
     this->ShieldFlashFeedback = NULL;
+    this->OverskillDepletedFeedback = NULL;
+    this->OverskillDamageFeedback = NULL;
     this->RevivedComment = NULL;
     this->UncuffedComment = NULL;
     this->StealthMaskOnComment = NULL;
@@ -148,12 +156,17 @@ ASBZPlayerCharacter::ASBZPlayerCharacter(const FObjectInitializer& ObjectInitial
     this->CurrentMiniGameComponent = NULL;
     this->bIsLocalKillingHumanShield = false;
     this->HumanShieldStartTime = -1.00f;
+    this->DropPlaceableEquippableForwardScale = 1.00f;
+    this->DropPlaceableEquippableBackwardScale = 1.00f;
     this->DefeatControlsReferenceID = -1;
     this->MinLandingSlideWalkToRunLerp = 0.40f;
     this->LastCuttableActor = NULL;
     this->LastHackedActor = NULL;
     this->ReflectorShieldMaxBlindedDuration = 4.00f;
     this->ReflectorShieldCooldownTime = 5.00f;
+    this->ThePunchActivatedEvent = NULL;
+    this->ThePunchEndedEvent = NULL;
+    this->OperatorActivatedEvent = NULL;
     const FProperty* p_Mesh = GetClass()->FindPropertyByName("Mesh");
     (*p_Mesh->ContainerPtrToValuePtr<USkeletalMeshComponent*>(this))->SetupAttachment(RootComponent);
     this->FPCameraAttachment->SetupAttachment(RootComponent);
@@ -174,9 +187,6 @@ bool ASBZPlayerCharacter::SetCameraFeedbackIntensity(int32 CameraFeedbackID, flo
     return false;
 }
 
-void ASBZPlayerCharacter::ServerStartEquipOverkillWeapon_Implementation() {
-}
-
 void ASBZPlayerCharacter::Server_StopCurrentEmoteMontage_Implementation(float BlendOutTime) {
 }
 
@@ -187,6 +197,9 @@ void ASBZPlayerCharacter::Server_PlayEmoteMontage_Implementation(const FGameplay
 }
 
 void ASBZPlayerCharacter::Server_OnMaskInputAbilityComplete_Implementation() {
+}
+
+void ASBZPlayerCharacter::Server_MarkHET5Actor_Implementation(ASBZAICharacter* InCharacter, bool bInMark) const {
 }
 
 bool ASBZPlayerCharacter::RemoveCameraFeedback(int32 RemoveID) {
@@ -256,6 +269,9 @@ void ASBZPlayerCharacter::Multicast_PlayEmoteMontage_Implementation(const FGamep
 void ASBZPlayerCharacter::Multicast_PauseDefeatTime_Implementation() {
 }
 
+void ASBZPlayerCharacter::Multicast_OnOperatorActivated_Implementation() {
+}
+
 void ASBZPlayerCharacter::Multicast_AbortPhoneInteraction_Implementation(bool bWasCompleted) {
 }
 
@@ -283,6 +299,9 @@ bool ASBZPlayerCharacter::FadeOutCameraFeedback(int32 RemoveID, bool bIsAutoRemo
     return false;
 }
 
+void ASBZPlayerCharacter::DebugServerStartEquipOverkillWeapon_Implementation(bool bIsFirstEquip) {
+}
+
 void ASBZPlayerCharacter::Client_Teleport_Implementation(const FVector& Location, const float Yaw) {
 }
 
@@ -306,6 +325,8 @@ void ASBZPlayerCharacter::Client_PlayOverHealRestoredEffect_Implementation() {
 
 void ASBZPlayerCharacter::Client_PlayOverHealGainedEffect_Implementation() {
 }
+
+
 
 int32 ASBZPlayerCharacter::ApplyCameraFeedback(FSBZLocalPlayerFeedbackParameters& Parameters) {
     return 0;

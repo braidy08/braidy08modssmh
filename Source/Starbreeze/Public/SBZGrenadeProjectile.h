@@ -15,6 +15,7 @@
 #include "SBZGrenadeProjectile.generated.h"
 
 class ASBZCharacter;
+class ASBZGrenadeProjectile;
 class UAkAudioEvent;
 class UGameplayEffect;
 class UMeshComponent;
@@ -111,6 +112,9 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool bWantsLocationRotation;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    TArray<ASBZGrenadeProjectile*> ClusterGrenadeArray;
+    
 private:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FSBZExplosivePhysicsEffectData PostDamagePhysicsEffectData;
@@ -145,9 +149,6 @@ protected:
 public:
     UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
     void Multicast_SetGrenadeProjectileVelocity(const FVector_NetQuantizeNormal& ProjectileDirection);
-    
-    UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
-    void Multicast_SetEquippableIndex(int32 InIndex);
     
 protected:
     UFUNCTION(BlueprintCallable, NetMulticast, Reliable)

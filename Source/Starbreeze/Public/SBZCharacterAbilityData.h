@@ -20,10 +20,13 @@ public:
     int32 InitialArmorHurtReactionWeightReduction;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    float InitialDealtDamageMultiplier;
+    float InitialOutgoingDamageMultiplier;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TArray<TSubclassOf<USBZGameplayAbility>> AbilityArray;
+    
+    UPROPERTY(EditAnywhere, meta=(AllowPrivateAccess=true))
+    float InitialHurtReactionWeightBuildupDifficultyScaleArray[4];
     
     USBZCharacterAbilityData();
 

@@ -93,8 +93,8 @@ ASBZSecurityCamera::ASBZSecurityCamera(const FObjectInitializer& ObjectInitializ
     this->SoundState = ESBZCameraSoundState::None;
     this->StatisticsMarkCamera = TEXT("mark-camera");
     this->CurrentRoom = NULL;
-    this->AutoAimComponent->SetupAttachment(RootComponent);
     this->CameraSoundComponent->SetupAttachment(RootComponent);
+    this->AutoAimComponent->SetupAttachment(RootComponent);
 }
 
 void ASBZSecurityCamera::PlaySoundEvent(UAkAudioEvent* AudioEvent) {
@@ -135,6 +135,12 @@ void ASBZSecurityCamera::OnPredictedAbortInteraction(USBZBaseInteractableCompone
 }
 
 void ASBZSecurityCamera::OnPerceptionUpdated(AActor* Actor, FAIStimulus Stimulus) {
+}
+
+void ASBZSecurityCamera::OnOperatorSkillUsed(bool bIsBase, bool bIsMarkMania, bool bIsWhoYouGonnaCall, bool bIsRadioSilence) {
+}
+
+void ASBZSecurityCamera::OnOperatorSkillDeactivated(bool bIsBase, bool bIsMarkMania, bool bIsWhoYouGonnaCall, bool bIsRadioSilence) {
 }
 
 void ASBZSecurityCamera::OnHeistStateChanged(EPD3HeistState OldState, EPD3HeistState NewState) {

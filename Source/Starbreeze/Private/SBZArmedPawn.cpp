@@ -14,6 +14,7 @@ ASBZArmedPawn::ASBZArmedPawn(const FObjectInitializer& ObjectInitializer) : Supe
     this->RangedWeapon = NULL;
     this->MarkedGameplayEffectClass = USBZApplyMarkedTagEffect::StaticClass();
     this->bIsDeathAllowed = true;
+    this->DamageStatusMarkerAsset = NULL;
 }
 
 void ASBZArmedPawn::Multicast_PredictedRagdollDenied_Implementation(int32 HurtReactionIndex) {
@@ -25,9 +26,9 @@ void ASBZArmedPawn::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLif
     DOREPLIFETIME(ASBZArmedPawn, TeamId);
 }
 
-UAbilitySystemComponent* ASBZArmedPawn::GetAbilitySystemComponent() const
-{
-    return nullptr;
+
+UAbilitySystemComponent* ASBZArmedPawn::GetAbilitySystemComponent() const {
+  return nullptr;
 }
 
 

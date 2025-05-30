@@ -4,6 +4,7 @@
 #include "SBZGlobalItemDatabase.generated.h"
 
 class USBZArmorDatabase;
+class USBZArmorInventorySlotDatabase;
 class USBZCoinDatabase;
 class USBZGloveDatabase;
 class USBZGloveInventorySlotDatabase;
@@ -19,10 +20,12 @@ class USBZMaskPreconfigDatabase;
 class USBZMaskPresetDatabase;
 class USBZMaskVFXDatabase;
 class USBZNewsItemDatabase;
+class USBZOverskillLoadoutDatabase;
 class USBZPayDayCreditDatabase;
 class USBZPlaceableDatabase;
 class USBZPlayerCharacterDatabase;
 class USBZPreplanningAssetDatabase;
+class USBZSkillCategoryDatabase;
 class USBZSkillLineDatabase;
 class USBZSprayCanDatabase;
 class USBZSuitBaseDatabase;
@@ -57,6 +60,9 @@ public:
     TSoftObjectPtr<USBZWeaponDatabase> OverkillWeapons;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TSoftObjectPtr<USBZOverskillLoadoutDatabase> OverskillLoadouts;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TSoftObjectPtr<USBZMaskDatabase> Masks;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -87,6 +93,9 @@ public:
     TSoftObjectPtr<USBZSkillLineDatabase> SkillLines;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TSoftObjectPtr<USBZSkillCategoryDatabase> SkillCategories;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TSoftObjectPtr<USBZPreplanningAssetDatabase> PreplanningAssets;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -115,6 +124,9 @@ public:
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TSoftObjectPtr<USBZPlayerCharacterDatabase> PlayerCharacters;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TSoftObjectPtr<USBZArmorInventorySlotDatabase> ArmorInventorySlots;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TSoftObjectPtr<USBZMaskInventorySlotDatabase> MaskInventorySlots;

@@ -1,6 +1,7 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "UObject/NoExportTypes.h"
+#include "SBZArmorStoreItem.h"
 #include "SBZCoinStoreItem.h"
 #include "SBZGloveStoreItem.h"
 #include "SBZHeistStoreItem.h"
@@ -12,6 +13,9 @@
 #include "SBZMaskPreconfigStoreItem.h"
 #include "SBZMaskPresetStoreItem.h"
 #include "SBZMaskVFXStoreItem.h"
+#include "SBZOverkillWeaponStoreItem.h"
+#include "SBZOverskillLoadoutStoreItem.h"
+#include "SBZPlaceableStoreItem.h"
 #include "SBZPlayerCharacterStoreItem.h"
 #include "SBZPreplanningAssetStoreItem.h"
 #include "SBZSprayCanStoreItem.h"
@@ -19,6 +23,8 @@
 #include "SBZSuitMaterialStoreItem.h"
 #include "SBZSuitPatternStoreItem.h"
 #include "SBZSuitPresetStoreItem.h"
+#include "SBZThrowableStoreItem.h"
+#include "SBZToolStoreItem.h"
 #include "SBZVendorPermissionStoreItem.h"
 #include "SBZWatchStoreItem.h"
 #include "SBZWeaponCharmStoreItem.h"
@@ -58,6 +64,9 @@ public:
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TMap<FGuid, FSBZInventorySlotStoreItem> SecondaryInventorySlotMap;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TMap<FGuid, FSBZInventorySlotStoreItem> ArmorInventorySlotMap;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TMap<FGuid, FSBZInventorySlotStoreItem> MaskInventorySlotMap;
@@ -124,6 +133,24 @@ public:
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TMap<FGuid, FSBZPlayerCharacterStoreItem> PlayerCharacterMap;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TMap<FGuid, FSBZOverkillWeaponStoreItem> OverkillWeaponMap;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TMap<FGuid, FSBZOverskillLoadoutStoreItem> OverskillLoadoutMap;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TMap<FGuid, FSBZPlaceableStoreItem> PlaceableMap;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TMap<FGuid, FSBZToolStoreItem> ToolMap;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TMap<FGuid, FSBZArmorStoreItem> ArmorMap;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TMap<FGuid, FSBZThrowableStoreItem> ThrowableMap;
     
     STARBREEZE_API FSBZPlayerStoreItemData();
 };

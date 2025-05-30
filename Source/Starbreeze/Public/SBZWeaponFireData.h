@@ -6,6 +6,7 @@
 #include "ESBZWeaponAmmoVisibilityType.h"
 #include "SBZDamageDistance.h"
 #include "SBZDamageMultiplierDistance.h"
+#include "SBZMaximumPenetrationCountDistance.h"
 #include "SBZWeaponBaseAttackData.h"
 #include "SBZWeaponFireData.generated.h"
 
@@ -34,6 +35,9 @@ public:
     uint32 MaximumPenetrationCount;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TArray<FSBZMaximumPenetrationCountDistance> MaximumPenetrationCountDistanceArray;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool bCanHitEnvironmentAfterPenetration;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -47,6 +51,9 @@ public:
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float OverHealDamageMultiplier;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    float HealthDamageMultiplier;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float ArmorPenetration;
@@ -82,6 +89,9 @@ public:
     TSoftClassPtr<ASBZGrenadeProjectile> GrenadeProjectileClass;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TSoftClassPtr<ASBZGrenadeProjectile> ClusterGrenadeClass;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float ArmorPenetrationProjectile;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -98,6 +108,9 @@ public:
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TArray<FSBZDamageDistance> DamageDistanceProjectileArray;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    float ClusterGrenadeSpawnDegrees;
     
     UPROPERTY(EditAnywhere, meta=(AllowPrivateAccess=true))
     uint32 AmmoLoadedMax;

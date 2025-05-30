@@ -16,6 +16,7 @@ enum class ESBZItemCategory : uint8 {
     PrimaryWeaponSlot,
     SecondaryWeaponSlot,
     Armor,
+    ArmorInventorySlot,
     PrimaryWeaponPreset,
     SecondaryWeaponPreset,
     LoadoutSlot,
@@ -47,5 +48,7 @@ enum class ESBZItemCategory : uint8 {
     Heist,
     VendorPermission,
     WeaponPartAttachment,
+    OverskillLoadout,
+    SkillCategory,
 };
 

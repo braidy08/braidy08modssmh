@@ -13,12 +13,15 @@ class USBZAccelByteNetworkErrorManager;
 class USBZAccelByteUser;
 class USBZAchievementManager;
 class USBZAnalyticsManager;
+class USBZArmorManager;
 class USBZAssetDatabaseManager;
 class USBZBanPlayerManager;
 class USBZChallengeCategoryManager;
 class USBZChallengeManager;
 class USBZCharacterManager;
+class USBZChromaSensaEffectDataAsset;
 class USBZCosmeticsManager;
+class USBZCosmeticsPartSlot;
 class USBZCurrencyManager;
 class USBZDSChallengeManager;
 class USBZExperienceManager;
@@ -34,8 +37,10 @@ class USBZInventoryManager;
 class USBZItemProgressionManager;
 class USBZLazyLoadingManager;
 class USBZListenerManager;
+class USBZLoadProgressionManager;
 class USBZLoadoutManager;
 class USBZMergePartyManager;
+class USBZMetaDataLoader;
 class USBZMusicManager;
 class USBZOnlineEventBroker;
 class USBZPartyMemberDataManager;
@@ -70,6 +75,9 @@ public:
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     USBZOnlineEventBroker* OnlineEventBroker;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    USBZCosmeticsPartSlot* MaskMouldSlot;
     
     UPROPERTY(BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
     ESBZMatchmakingProvider MatchmakingProvider;
@@ -120,6 +128,9 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TSubclassOf<USBZGlobalItemDatabase> GlobalQuickStartItemDatabaseClass;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    USBZChromaSensaEffectDataAsset* ChromaSensaIdleAnimationEffect;
+    
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     USBZGameStateMachine* GameStateMachine;
     
@@ -135,6 +146,9 @@ private:
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     USBZWeaponConfigManager* WeaponConfigManager;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    USBZArmorManager* ArmorManager;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     USBZCosmeticsManager* WeaponCosmeticsManager;
@@ -221,6 +235,9 @@ private:
     USBZInstantLootManager* InstantLootManager;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    USBZLoadProgressionManager* LoadProgressionManager;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     USBZInfamyManager* InfamyManager;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
@@ -271,6 +288,9 @@ private:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     USBZPlatformUserManager* PlatformUserManager;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    USBZMetaDataLoader* MetaDataLoader;
+    
 public:
     USBZGameInstance();
 
@@ -305,6 +325,9 @@ public:
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     static FString GetBuiltFromChangelist();
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    static FString GetBranch();
     
 protected:
     UFUNCTION(BlueprintCallable, Exec)

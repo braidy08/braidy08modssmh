@@ -12,6 +12,7 @@ class UCanvasPanel;
 class UCircularThrobber;
 class UImage;
 class UOverlay;
+class UProgressBar;
 class USBZLoginScreenWidget;
 
 UCLASS(Blueprintable, EditInlineNew)
@@ -19,9 +20,6 @@ class USBZLoginScreenBaseWidget : public USBZInternetStatusWidget {
     GENERATED_BODY()
 public:
 protected:
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    FSBZInfoPopupText PrivacyPolicyContent;
-    
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FSBZInfoPopupText EULAContent;
     
@@ -76,6 +74,9 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     UOverlay* ClickToStartOverlay;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
+    UProgressBar* LoadProgressionBar;
+    
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     bool bIsWidgetReady;
     
@@ -84,9 +85,6 @@ public:
 
     UFUNCTION(BlueprintCallable)
     void WidgetReady();
-    
-    UFUNCTION(BlueprintCallable)
-    void ShowPrivacyPolicyPopup();
     
     UFUNCTION(BlueprintCallable)
     void ShowEULAPopup();
@@ -104,18 +102,13 @@ public:
     void SetLoadingCanvasPanelVisibility(ESlateVisibility InVisibility);
     
 protected:
-    UFUNCTION(BlueprintCallable)
-    void OnPrivacyPopUpClosed(FName ClosingActionName);
-    
-public:
-    UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
-    void OnPrivacyPolicyChoice(FName ClosingActionName);
-    
-protected:
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void OnLoginError(const FText& ErrorMessage);
     
 public:
+    UFUNCTION(BlueprintCallable)
+    void OnLoadProgressionUpdate(int32 CurrentProgress, int32 MaxProgress);
+    
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void OnInitializeDone();
     

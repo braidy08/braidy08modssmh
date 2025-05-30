@@ -11,10 +11,16 @@ USBZMainMenuInventoryCharacterPreferenceScreen::USBZMainMenuInventoryCharacterPr
 }
 
 
+void USBZMainMenuInventoryCharacterPreferenceScreen::RefreshWidgetVisuals() {
+}
+
+void USBZMainMenuInventoryCharacterPreferenceScreen::OnGameInstallStateChanged(bool bIsInstallPending) {
+}
+
 void USBZMainMenuInventoryCharacterPreferenceScreen::NativeOnClearPreferredCharactersInputPressed() {
 }
 
-void USBZMainMenuInventoryCharacterPreferenceScreen::NativeOnCharacterPreferenceUpdated() {
+void USBZMainMenuInventoryCharacterPreferenceScreen::NativeOnCharacterPreferenceUpdated(int32 SlotIndex) {
 }
 
 void USBZMainMenuInventoryCharacterPreferenceScreen::NativeOnActiveCharacterSlotIndexChanged(int32 NewIndex) {

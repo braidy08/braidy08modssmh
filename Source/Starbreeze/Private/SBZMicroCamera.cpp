@@ -3,6 +3,7 @@
 #include "Components/BoxComponent.h"
 
 ASBZMicroCamera::ASBZMicroCamera(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->Tags.AddDefaulted(1);
     this->RotationSpeed = 100.00f;
     this->BoxComponent = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxComp"));
     this->ExplosionInstigator = NULL;
@@ -19,8 +20,8 @@ ASBZMicroCamera::ASBZMicroCamera(const FObjectInitializer& ObjectInitializer) : 
     this->ArmedEvent = NULL;
     this->OverloadSoundDuration = 1.50f;
     this->AkComponent = CreateDefaultSubobject<UAkComponent>(TEXT("AkComponent"));
-    this->AkComponent->SetupAttachment(RootComponent);
     this->BoxComponent->SetupAttachment(RootComponent);
+    this->AkComponent->SetupAttachment(RootComponent);
 }
 
 void ASBZMicroCamera::OnAICharacterKilled(APawn* InAIPawn) {

@@ -68,10 +68,10 @@ bool ASBZBeaconActionPhaseClient::ServerReserveSlot_Validate(const TArray<FSBZPl
     return true;
 }
 
-void ASBZBeaconActionPhaseClient::ServerRequestVoiceSessionLeave_Implementation(const FUniqueNetIdRepl& InPlayerId) {
+void ASBZBeaconActionPhaseClient::ServerRequestVoiceSessionLeave_Implementation(const FUniqueNetIdRepl& InPlayerId, bool bMakeVoiceDisabled) {
 }
 
-void ASBZBeaconActionPhaseClient::ServerRequestVoiceSessionJoin_Implementation(const FUniqueNetIdRepl& InPlayerId) {
+void ASBZBeaconActionPhaseClient::ServerRequestVoiceSessionJoin_Implementation(const FUniqueNetIdRepl& InPlayerId, bool bMakeVoiceEnabled) {
 }
 
 void ASBZBeaconActionPhaseClient::ServerRequestVoiceSessionInfo_Implementation() {
@@ -116,7 +116,10 @@ void ASBZBeaconActionPhaseClient::SendActiveLoadout(const FUniqueNetIdRepl& InPl
 void ASBZBeaconActionPhaseClient::OnRep_CharactersInfo() {
 }
 
-void ASBZBeaconActionPhaseClient::OnActiveLoadoutChanged(int32 NewActiveLoadoutIndex) {
+void ASBZBeaconActionPhaseClient::OnLocalPlayerLoadoutChanged(const FSBZPlayerLoadoutConfig& PlayerLoadout, int32 PlayerLoadoutIndex) {
+}
+
+void ASBZBeaconActionPhaseClient::OnActiveLoadoutIndexChanged(int32 NewActiveLoadoutIndex) {
 }
 
 void ASBZBeaconActionPhaseClient::NotifyMissionEnd_Implementation() {

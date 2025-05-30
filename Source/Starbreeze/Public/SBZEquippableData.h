@@ -2,6 +2,7 @@
 #include "CoreMinimal.h"
 #include "UObject/NoExportTypes.h"
 #include "UObject/NoExportTypes.h"
+#include "GameplayTagContainer.h"
 #include "ESBZEquippableFamily.h"
 #include "SBZInventoryBaseData.h"
 #include "Templates/SubclassOf.h"
@@ -12,8 +13,10 @@ class UAnimSequenceBase;
 class USBZEquippableAnimationCollection;
 class USBZEquippableMenuAnimationCollection;
 class USBZGameplayAbility;
+class USBZMeleeDamageData;
 class USBZOverskillData;
 class USBZPlayerAnimationCollectionFPP;
+class USBZPlayerMovementWeightAsset;
 class USBZTagReactionAsset;
 
 UCLASS(Blueprintable)
@@ -22,6 +25,12 @@ class STARBREEZE_API USBZEquippableData : public USBZInventoryBaseData {
 public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TSoftClassPtr<ASBZEquippable> EquippableClass;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool bIsOverkill;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool bIsInitialLoadoutAllowed;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TSoftObjectPtr<USBZTagReactionAsset> TagReactionAsset;
@@ -63,6 +72,9 @@ public:
     ESBZEquippableFamily EquippableFamily;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FGameplayTag EquippableTag;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FVector WeaponOffsetFPLeftHandEquipped;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -81,6 +93,9 @@ public:
     float WeightTierOffset;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    USBZPlayerMovementWeightAsset* WeightOverride;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FVector BoundsScaleHack;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -88,6 +103,18 @@ public:
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     USBZOverskillData* OverskillData;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    USBZMeleeDamageData* MeleeDamageData;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool bIsDropPhysicalize;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    float SprintEnterPlayRate;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    float SprintExitPlayRate;
     
 protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
