@@ -9107,3 +9107,15 @@ Binaries/Win64/EOSSDK-Win64-Shipping.dll
 .vs
 StagingTemp
 zModLoader_P.pak
+/Plugins/Wwise
+/Plugins/AssetGenerator
+/Plugins/AssetDumper
+/Content/WwiseAudio
+/Content/UI
+/Content/Mods/braidy08mods/test
+/Content/Mods/braidy08mods/eptest
+/Content/Mods/braidy08mods/braidy08testheist1
+/Content/Mods/braidy08mods/alarmonmask
+/Content/Gameplay
+/Content/Mods/LegacyHeistJukebox
+/Content/Mods/braidy08mods/HeistJukeboxRecode/Music/braidy08customsongs
